@@ -9,7 +9,7 @@ class Api extends Component {
        date: "",
        year: "",
        month: "",
-       day: ""
+       day: "",
     }
   }
 
@@ -58,7 +58,7 @@ class Api extends Component {
     })
   }
 
-  getImage() {
+  getImg() {
     const firstInstance = this.state.data.map((item) => {
       return item.image;
     })
@@ -66,14 +66,14 @@ class Api extends Component {
     const theImg = `https://epic.gsfc.nasa.gov/archive/natural/${this.state.year}/${this.state.month}/${this.state.day}/png/${firstImg}.png`
 
     return (
-      <div className="card">
-         <h1>{this.state.day}{this.state.month}{this.state.year}</h1>
-         <img src={theImg} alt="NASA img"></img>
+      <div>
+        <img src={theImg} alt="NASA image"></img>
       </div>
     )
   }
 
   render() {
+    console.log(this.state.data);
      return (
        <div className="layout">
           <form onSubmit={this.handleSubmit.bind(this)}>
@@ -90,11 +90,11 @@ class Api extends Component {
                Year
                <input type="text" value={this.state.year} onChange={this.updateYear.bind(this)} name="year"/>
             </label>
-            <input type="submit" value="Submit" />
+            <input type="submit" value="Submit"/>
           </form>
-          <div className="card-layout">
-              {this.getImage()}
-           </div>
+          <div className="card">
+            {this.getImg()}
+          </div>
        </div>
      )
    }
