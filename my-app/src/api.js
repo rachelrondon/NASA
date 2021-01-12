@@ -77,7 +77,7 @@ class Api extends Component {
     if (this.state.date) {
       return (
         <div>
-          <h1>Happy Earthday! {this.state.date}</h1>
+          <h2>Happy Earthday! {this.state.date}</h2>
           <img src={theImg} alt="NASA image"></img>
         </div>
       )
@@ -87,6 +87,7 @@ class Api extends Component {
   render() {
      return (
        <div className="card-layout">
+          <h1>Enter Birthdate</h1>
           <form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
             <label className="input-label">
                Day
