@@ -17,7 +17,7 @@ class Api extends Component {
    event.preventDefault();
 
    this.setState({
-     date: `${this.state.year}-${this.state.month}-${this.state.day}`
+     date: `${this.state.day}/${this.state.month}/${this.state.year}`
    });
 
    const apiUrl = `https://epic.gsfc.nasa.gov/api/natural/date/${this.state.year}-${this.state.month}-${this.state.day}`
@@ -58,6 +58,15 @@ class Api extends Component {
     })
   }
 
+  reset() {
+    this.setState({
+      date: "",
+      year: "",
+      month: "",
+      day: "",
+    })
+  }
+
   getImg() {
     const firstInstance = this.state.data.map((item) => {
       return item.image;
@@ -65,33 +74,36 @@ class Api extends Component {
     const firstImg = firstInstance[0];
     const theImg = `https://epic.gsfc.nasa.gov/archive/natural/${this.state.year}/${this.state.month}/${this.state.day}/png/${firstImg}.png`
 
-    return (
-      <div>
-        <img src={theImg} alt="NASA image"></img>
-      </div>
-    )
+    if (this.state.date) {
+      return (
+        <div>
+          <h1>Happy Earthday! {this.state.date}</h1>
+          <img src={theImg} alt="NASA image"></img>
+        </div>
+      )
+    }
   }
 
   render() {
-    console.log(this.state.data);
      return (
-       <div className="layout">
-          <form onSubmit={this.handleSubmit.bind(this)}>
-            <label>
+       <div className="card-layout">
+          <form className="input-form" onSubmit={this.handleSubmit.bind(this)}>
+            <label className="input-label">
                Day
                <input type="text" value={this.state.day} onChange={this.updateDay.bind(this)} name="day" />
             </label>
-             <label>
+             <label className="input-label">
               Month
               <input type="text" value={this.state.month} onChange={this.updateMonth.bind(this)}
                 name="month" />
             </label>
-             <label>
+             <label className="input-label">
                Year
                <input type="text" value={this.state.year} onChange={this.updateYear.bind(this)} name="year"/>
             </label>
-            <input type="submit" value="Submit"/>
+            <input className="submit-btn" type="submit" value="Submit"/>
           </form>
+          <button className="reset-btn" onClick={this.reset.bind(this)}>Reset</button>
           <div className="card">
             {this.getImg()}
           </div>
