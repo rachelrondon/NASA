@@ -10,6 +10,10 @@ class Api extends Component {
        year: "",
        month: "",
        day: "",
+       today: "",
+       birthday: "",
+       dateList: [],
+       theDate: ""
     }
   }
 
@@ -17,7 +21,10 @@ class Api extends Component {
    event.preventDefault();
 
    this.setState({
-     date: `${this.state.day}/${this.state.month}/${this.state.year}`
+    date: `${this.state.day}/${this.state.month}/${this.state.year}`,
+    birthday: new Date(`${this.state.day}/${this.state.month}/${this.state.year}`),
+    today: new Date(),
+    theDate: `${this.state.year}-${this.state.month}-${this.state.day}`
    });
 
    const apiUrl = `https://epic.gsfc.nasa.gov/api/natural/date/${this.state.year}-${this.state.month}-${this.state.day}`
