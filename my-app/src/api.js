@@ -10,6 +10,9 @@ class Api extends Component {
        year: "",
        month: "",
        day: "",
+       newDay: "",
+       newMonth: "",
+       newYear: ""
     }
   }
 
@@ -68,28 +71,27 @@ class Api extends Component {
   }
 
   getImg() {
-    const theData = this.state.date;
+    const theData = this.state.data;
+    const theDate = this.state.date;
+    let dateString = this.state.date;
+    let theDay = dateString.substring(0, 2);
+    let theMonth = dateString.substring(3,5);
+    let theYear = dateString.substring(6,10);
+    console.log("this is theDate");
+    console.log(theDate);
 
-    const day = new Date(this.state.date);
-    const formatTheDay = day.getFullYear() + "-" + (day.getMonth() + 1 + "-" + day.getDate())
-    const updatedDay = formatTheDay.replaceAll("-", "/");
-    console.log(day);
-    console.log(formatTheDay);
-    console.log(updatedDay);
-
-    if (theData.length === 0) {
-      const nextDay = new Date()
-      nextDay.setDate(nextDay.getDate() + 1);
-      const formatDate = nextDay.getFullYear() + "-" + (nextDay.getMonth() + 1 + "-" + nextDay.getDate())
-      const updatedDate = formatDate.replaceAll("-", "/");
-
+    if (!theData) {
+    //  const nextDay = new Date(theDate);
+    //  nextDay.setDate(nextDay.getDate() + 1);
+    //  const formatDate = nextDay.getFullYear() + "-" + (nextDay.getMonth() + 1 + "-" + nextDay.getDate())
+  //    const updatedDate = formatDate.replaceAll("-", "/");
     } else {
-      console.log("data!")
+
       const firstInstance = this.state.data.map((item) => {
         return item.image;
       })
       const firstImg = firstInstance[0];
-      const theImg = `https://epic.gsfc.nasa.gov/archive/natural/${this.state.year}/${this.state.month}/${this.state.day}/png/${firstImg}.png`
+      const theImg = `https://epic.gsfc.nasa.gov/archive/natural/${theYear}/${theMonth}/${theDay}/png/${firstImg}.png`
 
       if (this.state.date) {
         return (
@@ -102,10 +104,8 @@ class Api extends Component {
     }
   }
 
+
   render() {
-    console.log(this.state.date);
-    let day = new Date(this.state.date);
-    console.log(day);
      return (
        <div className="card-layout">
           <h1>Enter Birthdate</h1>
