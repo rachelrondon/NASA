@@ -10,9 +10,6 @@ class Api extends Component {
        year: "",
        month: "",
        day: "",
-       newDay: "",
-       newMonth: "",
-       newYear: ""
     }
   }
 
@@ -24,12 +21,11 @@ class Api extends Component {
    });
 
    const apiUrl = `https://epic.gsfc.nasa.gov/api/natural/date/${this.state.year}-${this.state.month}-${this.state.day}`
-
-   fetch(apiUrl)
-   .then(res => res.json())
-   .then(
+    fetch(apiUrl)
+    .then(res => res.json())
+    .then(
      (result) => {
-       this.setState({
+     this.setState({
          isLoaded: true,
          data: result
        })
@@ -41,6 +37,7 @@ class Api extends Component {
        error
      });
    }
+
  }
 
  updateYear(event) {
@@ -70,40 +67,27 @@ class Api extends Component {
     })
   }
 
-  getImg() {
-    const theData = this.state.data;
+   getImg() {
     const theDate = this.state.date;
-    let dateString = this.state.date;
-    let theDay = dateString.substring(0, 2);
-    let theMonth = dateString.substring(3,5);
-    let theYear = dateString.substring(6,10);
-    console.log("this is theDate");
-    console.log(theDate);
+    let theDay = theDate.substring(0, 2);
+    let theMonth = theDate.substring(3,5);
+    let theYear = theDate.substring(6,10);
 
-    if (!theData) {
-    //  const nextDay = new Date(theDate);
-    //  nextDay.setDate(nextDay.getDate() + 1);
-    //  const formatDate = nextDay.getFullYear() + "-" + (nextDay.getMonth() + 1 + "-" + nextDay.getDate())
-  //    const updatedDate = formatDate.replaceAll("-", "/");
-    } else {
-
+    if (this.state.date) {
       const firstInstance = this.state.data.map((item) => {
         return item.image;
       })
       const firstImg = firstInstance[0];
       const theImg = `https://epic.gsfc.nasa.gov/archive/natural/${theYear}/${theMonth}/${theDay}/png/${firstImg}.png`
 
-      if (this.state.date) {
         return (
           <div>
             <h2>Happy Earthday! {this.state.date}</h2>
             <img src={theImg} alt="NASA image"></img>
           </div>
         )
-      }
     }
   }
-
 
   render() {
      return (
