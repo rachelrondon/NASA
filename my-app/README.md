@@ -1,3 +1,12 @@
+## ABOUT
+
+```bash
+
+Create React App: https://reactjs.org/docs/create-a-new-react-app.html
+Nasa API: https://reactjs.org/docs/create-a-new-react-app.html
+
+```
+
 ## Installation
 
 ```bash
