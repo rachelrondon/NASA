@@ -1,20 +1,9 @@
+This is a project that utilizes the NASA API and renders an image of the earth based on the date that the user inputs. 
 
+## Technologies
+- [Create React App](https://github.com/facebookincubator/create-react-app)
+- React.JS
+- HTML5
+- CSS
+- JavaScript(ES6)
 
-## Installation
-
-```bash
-git clone https://github.com/rachelrondon/nasa-api.git
-cd nasa-api/my-app 
-npm install
-npm start 
-
-```
-
-
-## 
-```bash
-
-Create React App: https://reactjs.org/docs/create-a-new-react-app.html
-Nasa API: https://reactjs.org/docs/create-a-new-react-app.html
-
-```
